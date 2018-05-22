@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.hust.mapper.RefererHourPVMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.hust.domain.RefererHourPV" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="referer_url" property="refererUrl" jdbcType="VARCHAR" />
+    <result column="referer_host" property="refererHost" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="day" property="day" jdbcType="VARCHAR" />
+    <result column="hour" property="hour" jdbcType="VARCHAR" />
+    <result column="pv_referer_cnt" property="pvRefererCnt" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, referer_url, referer_host, year, month, day, hour, pv_referer_cnt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dw_pvs_referer_h
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dw_pvs_referer_h
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.hust.domain.RefererHourPV" >
+    insert into dw_pvs_referer_h (id, referer_url, referer_host, 
+      year, month, day, hour, 
+      pv_referer_cnt)
+    values (#{id,jdbcType=INTEGER}, #{refererUrl,jdbcType=VARCHAR}, #{refererHost,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{hour,jdbcType=VARCHAR}, 
+      #{pvRefererCnt,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.hust.domain.RefererHourPV" >
+    insert into dw_pvs_referer_h
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="refererUrl != null" >
+        referer_url,
+      </if>
+      <if test="refererHost != null" >
+        referer_host,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="day != null" >
+        day,
+      </if>
+      <if test="hour != null" >
+        hour,
+      </if>
+      <if test="pvRefererCnt != null" >
+        pv_referer_cnt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="refererUrl != null" >
+        #{refererUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="refererHost != null" >
+        #{refererHost,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="hour != null" >
+        #{hour,jdbcType=VARCHAR},
+      </if>
+      <if test="pvRefererCnt != null" >
+        #{pvRefererCnt,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.hust.domain.RefererHourPV" >
+    update dw_pvs_referer_h
+    <set >
+      <if test="refererUrl != null" >
+        referer_url = #{refererUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="refererHost != null" >
+        referer_host = #{refererHost,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        day = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="hour != null" >
+        hour = #{hour,jdbcType=VARCHAR},
+      </if>
+      <if test="pvRefererCnt != null" >
+        pv_referer_cnt = #{pvRefererCnt,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.hust.domain.RefererHourPV" >
+    update dw_pvs_referer_h
+    set referer_url = #{refererUrl,jdbcType=VARCHAR},
+      referer_host = #{refererHost,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      day = #{day,jdbcType=VARCHAR},
+      hour = #{hour,jdbcType=VARCHAR},
+      pv_referer_cnt = #{pvRefererCnt,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
